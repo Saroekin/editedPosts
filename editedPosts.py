@@ -28,7 +28,7 @@ c.execute('CREATE TABLE IF NOT EXISTS {tn} ({idf} {ft})'\
 conn.commit()
 
 #User"s username and password.
-Username = <Username>
+Username = = <Username>
 Password = <Password>
 
 #What reddit sees from the bot"s requests.
@@ -47,7 +47,7 @@ sourceCode = "http://github.com/Saroekin/editedPosts"
 
 #Templates for messages and comments (and variables).
 Title_For_Submissions_Template = """
-Author = /u/%s | Subreddit = /r/%s | ID = %s
+Subreddit = /r/%s | ID = %s
 """.format()
 
 titleForSubmissions = Title_For_Submissions_Template
@@ -86,13 +86,9 @@ def retrieveEditedPosts():
             if c.fetchone():
                 continue
             else:
-                try:
-                    postAuthor = post.author
-                except AttributeError:
-                    postAuthor = "[deleted]"
                 postSubreddit = post.subreddit
                 postPermalink = post.permalink
-                submission = subredditPostTo.submit((titleForSubmissions % (postAuthor, postSubreddit, postCommentID)), url=postPermalink)
+                submission = subredditPostTo.submit((titleForSubmissions % (postSubreddit, postCommentID)), url=postPermalink)
                 c.execute("INSERT INTO {tn} ({idf}) VALUES(?)".format(tn=tableName_1, idf=idColumn), [postCommentID])
                 conn.commit()
                 submission.set_flair(flair_text="Comment")
@@ -102,13 +98,9 @@ def retrieveEditedPosts():
             if c.fetchone():
                 continue
             else:
-                try:
-                    postAuthor = post.author
-                except AttributeError:
-                    postAuthor = "[deleted]"
                 postSubreddit = post.subreddit
                 postPermalink = post.permalink
-                submission = subredditPostTo.submit((titleForSubmissions % (postAuthor, postSubreddit, postSubmissionID)), url=postPermalink)
+                submission = subredditPostTo.submit((titleForSubmissions % (postSubreddit, postSubmissionID)), url=postPermalink)
                 c.execute("INSERT INTO {tn} ({idf}) VALUES(?)".format(tn=tableName_2, idf=idColumn), [postSubmissionID])
                 conn.commit()
                 submission.set_flair(flair_text="Submission")
