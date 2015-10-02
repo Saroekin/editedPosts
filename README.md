@@ -1,7 +1,7 @@
 # editedPosts
 
 Definiton: 
->A bot that collects submissions or comments that have been edited throughout reddit.
+>A bot that collects submissions or comments that have been edited throughout Reddit.
 
 ###### **Status: Inactive**
 
