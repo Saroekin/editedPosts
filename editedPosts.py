@@ -28,7 +28,7 @@ c.execute('CREATE TABLE IF NOT EXISTS {tn} ({idf} {ft})'\
 conn.commit()
 
 #User"s username and password.
-Username = = <Username>
+Username = <Username>
 Password = <Password>
 
 #What reddit sees from the bot"s requests.
