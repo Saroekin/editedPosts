@@ -31,7 +31,7 @@ conn.commit()
 Username = <Username>
 Password = <Password>
 
-#What reddit sees from the bot"s requests.
+#What reddit sees from the bot's requests.
 user_agent = <User Agent>
 r = praw.Reddit(user_agent = user_agent)
 print("\n\nLogging in . . . \n\n")
